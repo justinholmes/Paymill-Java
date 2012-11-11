@@ -250,7 +250,7 @@ public class HttpClient {
 		return body;
 	}
 
-	private static class CustomizedHostnameVerifier implements HostnameVerifier {
+	private static class CustomizedHostnameVerifier implements javax.net.ssl.HostnameVerifier {
  		public boolean verify(String hostname, javax.net.ssl.SSLSession session) {
   			return true;
  		}
