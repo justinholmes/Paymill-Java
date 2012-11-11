@@ -198,6 +198,8 @@ public class HttpClient {
 					.openConnection();
 			connection.setRequestMethod(method.name());
 
+			connection.setHostnameVerifier(new CustomizedHostNameVerifier());
+
 			if (apiKey != null) {
 				setAuthentication(connection);
 			}
@@ -246,5 +248,11 @@ public class HttpClient {
 		String body = new Scanner(stream, "UTF-8").useDelimiter("\\A").next();
 		stream.close();
 		return body;
+	}
+
+	private static class CustomizedHostnameVerifier implements HostnameVerifier {
+ 		public boolean verify(String hostname, javax.net.ssl.SSLSession session) {
+  			return true;
+ 		}
 	}
 }
